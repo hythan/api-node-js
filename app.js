@@ -1,17 +1,15 @@
-const express = require('express');
+// App: The ‘app’ file contain the main business logic of the web application and is
+// responsible for its execution. It also contains access to the backend database and
+// data models. The ‘app’ consists of two main components – routes and controllers.
+
+import express from 'express';
+import './config/enviroment.js';
+import routes from './config/routes.js';
+
 const app = express();
-const routes = require('./routes');
-const path = require('path');
-const {middlewareSetUserSession} = require('./src/middlewares/meuMiddleware');
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('./public'));
+// expects request data to be sent in JSON format, which often resembles a simple JS object: 
 app.use(express.json())
-
-app.set('views', path.resolve(__dirname, 'src', 'views'));
-app.set('view engine', 'ejs');
-
-app.use(middlewareSetUserSession);
 app.use(routes);
 
-app.listen(3000);
+export default app;

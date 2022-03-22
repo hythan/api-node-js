@@ -14,7 +14,8 @@ services:
       - pg_data:/var/lib/postgres
     networks:
       - default
-  express: 
+
+  app: 
     build: .
     user: node:node
     depends_on: 
@@ -27,6 +28,7 @@ services:
     networks:
       - default
     command: "npm start"
+
 networks:
   default: 
 volumes:
