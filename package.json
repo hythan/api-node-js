@@ -1,24 +1,32 @@
 {
-  "name": "teste",
+  "name": "maxi-admin-api",
   "version": "1.0.0",
-  "description": "",
+  "type": "module",
+  "description": "API to Maxiambiental administration system",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "NODE_ENV=development nodemon ./bin/www/server.js",
+    "db:migrate":"env $(cat ./config/development.env|xargs) npx prisma migrate reset --force",
+    "test:migrate":"env $(cat ./config/test.env|xargs) npx prisma migrate reset --force",
+    "test":"NODE_ENV=test node --experimental-vm-modules node_modules/.bin/jest --detectOpenHandles",
+    "test:watch": "npm run test -- --watch"
+  },
+  "jest": {
+    "transform": {}
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Hythan Matheus Correia de Oliveira guided by Prof. Diego Marczal",
+  "license": "CC BY-NC-SA",
   "dependencies": {
     "@prisma/client": "^3.10.0",
-    "connect-flash": "^0.1.1",
     "dotenv": "^16.0.0",
-    "ejs": "^3.1.6",
     "express": "^4.17.3",
-    "express-session": "^1.17.2",
-    "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "prisma": "^3.10.0"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2"
   }
 }
