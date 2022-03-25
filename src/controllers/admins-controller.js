@@ -14,6 +14,24 @@ export default class AdminController {
             res.json({error: err.message});
         }
     }
+
+    static async update(req, res) {
+        try{
+            const admin = await Admin.update(req.params.id,req.body);
+            res.json(admin);
+        } catch(err){
+            res.json({error: err.message});
+        }
+    }
+
+    static async delete(req, res) {
+        try{
+            const admin = await Admin.delete(req.params.id);
+            res.json(admin);
+        }catch(err){
+            res.json({error: err.message});
+        }
+    }
     
 }
 
